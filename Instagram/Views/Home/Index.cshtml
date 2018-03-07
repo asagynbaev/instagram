@@ -2,75 +2,33 @@
     ViewBag.Title = "Instagram Portfolio";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+@model List<Instagram.Models.Images>
+
 <div class="emptyDiv">
     <div class="row">
         <div class="col-sm-4"></div>
         <div class="col-sm-4">
             <div class="feeds">
-                <div class="feed">
-                    <div class="feed-header">
-                        <a class="feed-author-img"><img src="~/img/avatar.png" /></a>
-                        <a class="feed-author-name" href="http://blog.stackpie.com">Marhyorh</a>
-                        <a class="feed-time">3h</a>
+                @foreach (var img in Model)
+                {
+                    <div class="feed">
+                        <div class="feed-header">
+                            <a class="feed-author-img"><img src="~/img/avatar.png" /></a>
+                            <a class="feed-author-name" href="http://blog.stackpie.com">Marhyorh</a>
+                            <a class="feed-time">@img.created_at.Date.ToShortDateString()</a>
+                        </div>
+                        <div class="feed-image">
+                            <img src="data:image;base64,@Convert.ToBase64String(img.image)" />
+                        </div>
+                        <div class="feed-body">@img.description</div>
+                        <div class="feed-footer">
+                            <i class="fa fa-heart-o nx"></i>
+                            <input type="text" class="ny" placeholder="Add a comment..." />
+                            <i class="fa fa-sort-down nz"></i>
+                        </div>
                     </div>
-                    <div class="feed-image">
-                        <img src="~/img/images/1.jpg" />
-                    </div>
-                    <div class="feed-body">Some creepy texts here....</div>
-                    <div class="feed-footer">
-                        <i class="fa fa-heart-o nx"></i>
-                        <input type="text" class="ny" placeholder="Add a comment..." />
-                        <i class="fa fa-sort-down nz"></i>
-                    </div>
-                </div>
-                <div class="feed">
-                    <div class="feed-header">
-                        <a class="feed-author-img"><img src="~/img/avatar.png" /></a>
-                        <a class="feed-author-name" href="http://blog.stackpie.com"> Ademola</a>
-                        <a class="feed-time">2h</a>
-                    </div>
-                    <div class="feed-image">
-                        <img src="~/img/images/2.jpg" />
-                    </div>
-                    <div class="feed-body">More creepy texts...</div>
-                    <div class="feed-footer">
-                        <i class="fa fa-heart-o nx"></i>
-                        <input type="text" class="ny" placeholder="Add a comment..." />
-                        <i class="fa fa-sort-down nz"></i>
-                    </div>
-                </div>
-                <div class="feed">
-                    <div class="feed-header">
-                        <a class="feed-author-img"><img src="~/img/avatar.png" /></a>
-                        <a class="feed-author-name" href="http://blog.stackpie.com">Tobi</a>
-                        <a class="feed-time">3h</a>
-                    </div>
-                    <div class="feed-image">
-                        <img src="~/img/images/3.jpg" />
-                    </div>
-                    <div class="feed-body">Some creepy texts here....</div>
-                    <div class="feed-footer">
-                        <i class="fa fa-heart-o nx"></i>
-                        <input type="text" class="ny" placeholder="Add a comment..." />
-                        <i class="fa fa-sort-down nz"></i>
-                    </div>
-                </div>
-                <div class="feed">
-                    <div class="feed-header">
-                        <a class="feed-author-img"><img src="~/img/avatar.png" /></a>
-                        <a class="feed-author-name" href="http://blog.stackpie.com">Seun</a>
-                        <a class="feed-time">2h</a>
-                    </div>
-                    <div class="feed-image">
-                        <img src="~/img/images/4.jpg" />
-                    </div>
-                    <div class="feed-body">More creepy texts...</div>
-                    <div class="feed-footer">
-                        <i class="fa fa-heart-o nx"></i>
-                        <input type="text" class="ny" placeholder="Add a comment..." />
-                        <i class="fa fa-sort-down nz"></i>
-                    </div>
-                </div>
+                }
             </div>
         </div>
         <div class="col-sm-4"></div>
