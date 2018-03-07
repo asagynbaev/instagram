@@ -13,12 +13,16 @@ namespace Instagram.Controllers
         [Authorize]
         public ActionResult Index()
         {
+            var user_id = Convert.ToInt32(HttpContext.User.Identity.Name); //Берем логин из куков
+            var model = new AccountImagesModel();
             List<Images> img = new List<Images>();
             try
             {
                 using (var db = new InstagramDBContext())
                 {
-                    img = db.Images.Take(20).ToList();
+                    var users = db.Users.Where(x => x.id == user_id).ToList(); // Получаем данные о пользователе
+                    model.Account = users[0];
+                    model.Images = db.Images.Take(20).ToList();
                 }
             }
             catch (Exception ex)
@@ -26,7 +30,7 @@ namespace Instagram.Controllers
 
             }
 
-            return View(img);
+            return View(model);
         }
 
         [Authorize]
