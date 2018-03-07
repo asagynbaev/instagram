@@ -1,10 +1,10 @@
 # instagram
 
-Проект выполнен на Visual Studio 2015
-База данных Microsoft SQL Server 2014
+Required ide - Visual Studio 2015
+Database server - Microsoft SQL Server 2014
 
-Развернуть Instagram.bak и в /Instagram/Web.config изменить на свой сервер
+Restore Instagram.bak then edit /Instagram/Web.config, "DbConnection" connection string
 
-Для доступа в систему
+sign in with:
 login: admin;
 password:123123;
