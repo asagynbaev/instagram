@@ -118,15 +118,10 @@ namespace Instagram.Controllers
             {
                 using (var db = new InstagramDBContext())
                 {
-                    var users = db.Users.Where(x => x.id == user_id).ToList();
-                    model.Account = users[0];
-                    
-                    var posts = db.Images.Where(x => x.user_id == model.Account.id);
-                    model.countOfImages = posts.Count();
-                    foreach (var img in posts)
-                    {
-                        model.Images.Add(img);
-                    }
+                    var users = db.Users.Where(x => x.id == user_id).ToList(); // Получаем данные о пользователе
+                    model.Account = users[0]; 
+                    model.Images = db.Images.Where(x => x.user_id == model.Account.id).ToList(); // Получаем массив публикаций
+                    model.countOfImages = model.Images.Count(); //Количество публикаций
                 }
             }
             catch (Exception ex)

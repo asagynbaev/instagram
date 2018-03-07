@@ -26,6 +26,20 @@
             <div class="row"><h5><b>@Model.Account.username</b></h5></div>
         </div>
     </div>
+    <div class="container-fluid text-center bg-grey" style="margin-top:100px">
+        <div class="row text-center">
+            @foreach (var img in Model.Images)
+            {
+                <div class="col-sm-4">
+                    <div class="thumbnail">
+                        <img src="data:image;base64,@Convert.ToBase64String(img.image)" style="max-height:220px" />
+                        <p><strong></strong></p>
+                        <p></p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
 </div>
 
 
